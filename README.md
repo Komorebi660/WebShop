@@ -48,7 +48,7 @@ Our code is implemented in Python. To setup, do the following:
 ```
 4. Create a virtual environment using [Anaconda](https://anaconda.org/anaconda/python) and activate it
 ```sh
-> conda create -n webshop python=3.8.13
+> conda create -n webshop python=3.8.13 -y
 > conda activate webshop
 ```
 5. Install requirements into the `webshop` virtual environment via the `setup.sh` script
