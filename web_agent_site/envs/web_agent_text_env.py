@@ -253,7 +253,7 @@ class WebAgentTextEnv(gym.Env):
         self.browser.get(init_url, session_id=self.session, session_int=session_int)
 
         self.text_to_clickable = None
-        self.instruction_text = self.get_instruction_text() if instruction_text is None else instruction_text
+        self.instruction_text = self.get_instruction_text()
         obs = self.observation
         self.prev_obs = [obs]
         self.prev_actions = []
@@ -332,7 +332,6 @@ class SimServer:
         self.search_time = 0
         self.render_time = 0
         self.sample_time = 0
-        self.assigned_instruction_text = None  # TODO: very hacky, should remove
         
     @app.route('/', methods=['GET', 'POST'])
     def index(self, session_id, **kwargs):
@@ -515,9 +514,6 @@ class SimServer:
             else:
                 instruction_text = \
                     self.user_sessions[session_id]['goal']['instruction_text']
-            if self.assigned_instruction_text is not None:
-                instruction_text = self.assigned_instruction_text  # TODO: very hacky, should remove
-                self.user_sessions[session_id]['goal']['instruction_text'] = instruction_text
             session = self.user_sessions[session_id]
 
             if not kwargs:
